@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./back
+      dockerfile: Dockerfile.dev
+    container_name: backend-api
+    ports:
+      - "8080:8080"
+    volumes:
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile.dev
+    container_name: frontend-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front/:/app/
+      - /app/node_modules/
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:8080
+    networks:
+      - app-network
+
+  db:
+    image: postgres
+    container_name: app-database
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+
+volumes:
+  postgres_data:

@@ -1,0 +1,6 @@
+.docker
+.vscode
+
+.env*
+# Gotta keep the sample, and the sample only
+!.env.sample

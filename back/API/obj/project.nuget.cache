@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "k92k4da57rU=",
+  "success": true,
+  "projectFilePath": "/home/roundronin/documents/repos/ReactCsharpApp/back/API/API.csproj",
+  "expectedPackageFiles": [
+    "/home/roundronin/.nuget/packages/microsoft.aspnetcore.openapi/9.0.2/microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512",
+    "/home/roundronin/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
