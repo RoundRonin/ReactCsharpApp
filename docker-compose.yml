@@ -9,8 +9,15 @@ services:
     ports:
       - "8080:8080"
     volumes:
+      - ./back/:/app/
+      - ~/.nuget/packages:/root/.nuget/packages
+    env_file:
+      - .env
+    depends_on:
+      - db
     networks:
       - app-network
+    entrypoint: [ "/app/entrypoint.sh" ]
 
   frontend:
     build:
