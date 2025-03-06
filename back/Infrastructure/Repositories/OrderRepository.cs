@@ -6,6 +6,7 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Data;
 using System;
+using System.Diagnostics;
 
 namespace Infrastructure.Repositories;
 
@@ -18,13 +19,15 @@ public class OrderRepository(IServiceScopeFactory scopedFactroy) : IOrderReposit
         return await context.Orders.FindAsync(id);
     }
 
-    public async Task<int> AddAsync(Order order)
+    public async Task<Order> AddAsync(Order order)
     {
         using var scope = scopedFactroy.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
         await context.Orders.AddAsync(order);
         await context.SaveChangesAsync();
-        return order.Id;
+
+        return order;
     }
 
     public async Task<PaginatedList<Order>> GetPaginatedOrdersAsync(int page, int limit)

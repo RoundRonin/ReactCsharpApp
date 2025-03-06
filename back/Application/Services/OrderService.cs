@@ -19,10 +19,11 @@ public class OrderService(IOrderDomainService orderDomainService, IMapper mapper
         return mapper.Map<OrderDTO>(order);
     }
 
-    public async Task<int> AddOrderAsync(CreateOrderDTO createOrderDTO)
+    public async Task<OrderDTO> AddOrderAsync(CreateOrderDTO createOrderDTO)
     {
         var order = mapper.Map<Order>(createOrderDTO);
-        return await orderDomainService.AddOrderAsync(order);
+        order = await orderDomainService.AddOrderAsync(order);
+        return mapper.Map<OrderDTO>(order);
     }
 
     public async Task<PaginatedList<OrderDTO>> GetOrdersAsync(int page, int limit)

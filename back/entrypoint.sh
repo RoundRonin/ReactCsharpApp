@@ -7,9 +7,10 @@ if [ -z "$PENDING_MIGRATIONS" ]; then
 else
   echo "Pending migrations found. Applying migrations..."
 
+  cd /app/API
   TIMESTAMP=$(date +"%Y%m%d%H%M%S")
-  dotnet ef migrations add AutoMigration_$TIMESTAMP -o src/Infrastructure/Migrations --context AppDbContext
-  dotnet ef database update --context AppDbContext
+  dotnet ef migrations add AutoMigration_$TIMESTAMP --project ../Infrastructure --startup-project .
+  dotnet ef database update --project ../Infrastructure --startup-project .
 fi
 
 dotnet watch --project /app/API/API.csproj

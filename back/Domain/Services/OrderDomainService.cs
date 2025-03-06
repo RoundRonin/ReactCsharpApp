@@ -8,7 +8,7 @@ public class OrderDomainService(IOrderRepository orderRepository) : IOrderDomain
 {
     private readonly IOrderRepository orderRepository = orderRepository;
 
-    public async Task<int> AddOrderAsync(Order order)
+    public async Task<Order> AddOrderAsync(Order order)
     {
         if (!order.IsValid(out var errors))
         {
@@ -17,8 +17,8 @@ public class OrderDomainService(IOrderRepository orderRepository) : IOrderDomain
 
         order.OrderNumber = Guid.NewGuid().ToString();
 
-        var id = await orderRepository.AddAsync(order);
-        return id;
+        var newOrder = await orderRepository.AddAsync(order);
+        return newOrder;
     }
 
     public async Task<Order> GetOrderByIdAsync(int id)

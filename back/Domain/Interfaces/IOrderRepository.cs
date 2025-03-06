@@ -6,6 +6,6 @@ namespace Domain.Interfaces;
 public interface IOrderRepository
 {
     Task<Order> GetByIdAsync(int id);
-    Task<int> AddAsync(Order order);
+    Task<Order> AddAsync(Order order);
     Task<PaginatedList<Order>> GetPaginatedOrdersAsync(int page, int limit);
 }

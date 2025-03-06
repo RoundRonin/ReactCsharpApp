@@ -10,7 +10,7 @@ namespace API.Controllers
     {
         private readonly IOrderService _orderService = orderService;
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetOrderById")]
         public async Task<IActionResult> GetById(int id)
         {
             var order = await _orderService.GetOrderByIdAsync(id);
@@ -25,8 +25,8 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateOrderDTO createOrderDTO)
         {
-            int id = await _orderService.AddOrderAsync(createOrderDTO);
-            return CreatedAtAction(nameof(GetById), id, createOrderDTO);
+            var orderDTO = await _orderService.AddOrderAsync(createOrderDTO);
+            return CreatedAtAction(nameof(GetById), new { id = orderDTO.Id }, orderDTO);
         }
 
         [HttpGet]
