@@ -1,0 +1,27 @@
+FROM mcr.microsoft.com/dotnet/sdk:9.0
+
+WORKDIR /app
+
+RUN dotnet tool install --global dotnet-ef
+
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+COPY *.sln ./
+COPY API/*.csproj ./API/
+COPY Application/*.csproj ./Application/
+COPY Domain/*.csproj ./Domain/
+COPY Infrastructure/*.csproj ./Infrastructure/
+
+RUN dotnet restore
+
+EXPOSE 8080
+
+ENV ASPNETCORE_URLS="http://*:8080"
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV DOTNET_USE_POLLING_FILE_WATCHER=true
+
+COPY . .
+
+RUN dotnet dev-certs https --trust
+
+CMD ["dotnet", "watch", "--project", "src/Presentation/Presentation.csproj"]
