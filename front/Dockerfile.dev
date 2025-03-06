@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps
 
-COPY tailwind.config.ts postcss.config.mjs ./
+# COPY tailwind.config.ts postcss.config.mjs ./
 
 COPY . .
 
