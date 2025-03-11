@@ -78,6 +78,8 @@ POSTGRES_PASSWORD=mahPassword
 POSTGRES_DB=appDb
 HOST=localhost
 PORT=5432
+NEXT_PUBLIC_API_URL=http://localhost:8080
+INTERNAL_API_URL=http://backend:8080
 ```
 
 > Startup is meant to be done using docker!!
