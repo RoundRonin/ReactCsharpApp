@@ -89,6 +89,16 @@ At the root of the project
 docker compose up --build
 ```
 
+## After starting
+
+Backend is accessable at port 8080/api
+To view swagger:
+```
+/api/swagger/index.html
+```
+
+Frontend is accessable at port 3000
+
 ## Conribution
 
 Well, you can try
