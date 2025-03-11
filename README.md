@@ -15,7 +15,7 @@ Built according to Clean Architecture structure:
 
 Dependency flow: App -> Presentation -> Application -> Domain <- Infrastructure.
 
-# Backend (back/):
+### Backend (back/):
 
 Built according to Clean Architecture structure:
 - API: Exposes endpoints via controllers.
