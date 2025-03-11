@@ -70,6 +70,16 @@ Node.js: At least version 22.x. (none other tested)
 .NET Core SDK: Version 9.0+.
 Database: (Optional) PostgreSQL pgAdmin.
 
+> Warining!
+Before proceeding, you should create .env file. There is a sample provided in the repo. And here:
+```sh
+POSTGRES_USER=mahUsername
+POSTGRES_PASSWORD=mahPassword
+POSTGRES_DB=appDb
+HOST=localhost
+PORT=5432
+```
+
 > Startup is meant to be done using docker!!
 
 At the root of the project
