@@ -44,7 +44,7 @@ Utilizes Entity Framework Core for database management
 Main patterns: Repository, Anemic Domain Model
 
 ## File Tree
-.
+```
 ├── back                       # Backend folder
 │   ├── API                  # Exposes API endpoints (OrderController, etc.)
 │   ├── Application          # Service interfaces and DTOs
@@ -61,7 +61,7 @@ Main patterns: Repository, Anemic Domain Model
 ├── docker-compose.yml       # Docker Compose for orchestration
 ├── LICENSE                  
 └── README.md     
-
+```
 ## Getting Started
 Prerequisites
 
