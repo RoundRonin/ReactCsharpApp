@@ -16,9 +16,20 @@ using Domain.Interfaces;
 
 using Application.Services;
 using Domain.Services;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowNextJS", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") // Your frontend URL
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 // Database
 var connectionString = DbContextConfigurationHelper.BuildConnectionString();
@@ -58,10 +69,28 @@ else
     //app.UseHsts();
 }
 
+// const string AllowAnyOriginPolicy = "_allowAnyOrigin";
+// app.UseCors(AllowAnyOriginPolicy);
 // Middleware
 app.UseMiddleware<ExceptionHandler>();
 //app.UseHttpsRedirection();
 app.UseRouting();
+// app.Use(async (context, next) =>
+// {
+//     Debug.WriteLine("Request Headers:");
+//     foreach (var header in context.Request.Headers)
+//     {
+//         Debug.WriteLine($"{header.Key}: {header.Value}");
+//     }
+//     await next();
+// });
+app.UseCors("AllowNextJS");
+// app.Use(async (context, next) =>
+// {
+//     context.Response.Headers.Append("Access-Control-Allow-Origin", "http://localhost:3000");
+//     await next();
+// });
+
 app.UseAuthorization();
 
 app.MapControllers();
